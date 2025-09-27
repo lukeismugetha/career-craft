@@ -1,0 +1,10 @@
+# Python
+backend/venv/
+__pycache__/
+*.pyc
+
+# Node
+frontend/career-craft-frontend/node_modules/
+
+# Environment files
+*.env
