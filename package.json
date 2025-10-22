@@ -1,0 +1,20 @@
+{
+  "name": "career-craft",
+  "version": "1.0.0",
+  "description": "Initial project setup.  \r This repository contains the code for the Career Craft NLP-based Career Advisor web application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukeismugetha/career-craft.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukeismugetha/career-craft/issues"
+  },
+  "homepage": "https://github.com/lukeismugetha/career-craft#readme"
+}
