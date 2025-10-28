@@ -37,3 +37,11 @@ if __name__ == '__main__':
     import models
 
     app.run(debug=True)
+
+@app.route('/api/advisor', methods=['POST'])
+def advisor():
+    data = request.get_json()
+    query = data.get('query', '')
+    # TODO: Replace with actual NLP model call
+    response = f"Based on your input '{query}', you might consider exploring Data Science or UX Design."
+    return jsonify({"response": response})
