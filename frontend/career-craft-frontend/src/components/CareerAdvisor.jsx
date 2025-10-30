@@ -2,57 +2,32 @@ import { useState } from "react";
 import API from "../api";
 
 export default function CareerAdvisor() {
-  const [input, setInput] = useState("");
+  const [query, setQuery] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const handleSend = async (e) => {
-    e.preventDefault();
-    const newMessage = { sender: "user", text: input };
-    setMessages([...messages, newMessage]);
-    setInput("");
-
+  const send = async () => {
+    if (!query) return;
+    setMessages(prev => [...prev, { sender: "user", text: query }]);
+    setQuery("");
     try {
-      const res = await API.post("/api/advisor", { query: input });
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: res.data.response },
-      ]);
-    } catch (err) {
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: "Error connecting to AI Advisor" },
-      ]);
+      const res = await API.post("/advisor", { query });
+      setMessages(prev => [...prev, { sender: "bot", text: res.data.response }]);
+    } catch (e) {
+      setMessages(prev => [...prev, { sender: "bot", text: "Error connecting to AI" }]);
     }
   };
 
   return (
-    <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Career Path Advisor</h2>
-      <div className="h-64 overflow-y-auto mb-4 border p-2 rounded">
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className={`p-2 my-1 rounded ${
-              msg.sender === "user"
-                ? "bg-blue-100 text-right"
-                : "bg-gray-200 text-left"
-            }`}
-          >
-            {msg.text}
-          </div>
+    <div className="glass p-4 rounded-xl neon-outline">
+      <div className="h-60 overflow-y-auto mb-4">
+        {messages.map((m,i) => (
+          <div key={i} className={`mb-2 p-2 rounded ${m.sender==="user" ? "bg-[rgba(52,91,255,0.08)] text-right" : "bg-[rgba(255,255,255,0.02)] text-left"}`}>{m.text}</div>
         ))}
       </div>
-      <form onSubmit={handleSend} className="flex">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask for career advice..."
-          className="flex-grow border p-2 rounded-l"
-        />
-        <button className="bg-blue-500 text-white px-4 rounded-r">
-          Send
-        </button>
-      </form>
+      <div className="flex gap-2">
+        <input value={query} onChange={e=>setQuery(e.target.value)} className="flex-1 p-2 rounded bg-transparent border border-[rgba(255,255,255,0.04)]" />
+        <button onClick={send} className="btn-neon">Send</button>
+      </div>
     </div>
   );
 }

@@ -5,11 +5,14 @@ import Users from "./pages/Users";
 import Profile from "./pages/Profile";
 import AdminPanel from "./pages/AdminPanel";
 import CareerAdvisor from "./components/CareerAdvisor";
+import Register from "./pages/Register";
+
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/users" element={<Users />} />

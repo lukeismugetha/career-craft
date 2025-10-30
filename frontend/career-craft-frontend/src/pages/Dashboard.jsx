@@ -1,28 +1,17 @@
-export default function AdminPanel() {
-  return (
-    <div style={{
-      padding: "40px",
-      textAlign: "center",
-      backgroundColor: "#f8fafc",
-      minHeight: "100vh"
-    }}>
-      <h1 style={{ color: "#111827" }}>Admin Panel</h1>
-      <p style={{ color: "#4b5563" }}>Welcome to the Admin Dashboard.</p>
+import NeonCard from "../components/NeonCard";
 
-      <div style={{
-        marginTop: "30px",
-        background: "#fff",
-        borderRadius: "8px",
-        padding: "20px",
-        display: "inline-block",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
-      }}>
-        <h2>System Controls</h2>
-        <ul style={{ textAlign: "left" }}>
-          <li>✅ Manage Users</li>
-          <li>📊 View Analytics</li>
-          <li>⚙️ Configure Settings</li>
-        </ul>
+export default function Dashboard(){
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <NeonCard title="Active Users" value="124" />
+        <NeonCard title="AI Requests Today" value="38" />
+        <NeonCard title="Saved Careers" value="19" />
+      </div>
+
+      <div className="bg-[linear-gradient(90deg,#071021,rgba(255,255,255,0.02))] p-6 rounded-xl neon-outline">
+        <h3 className="text-lg font-semibold text-slate-100 mb-3">Recent Activity</h3>
+        <p className="text-slate-300">User John asked about Data Science recommendations.</p>
       </div>
     </div>
   );
